@@ -70,10 +70,20 @@ that are to be forwarded. So when running the container, an appropriate network 
 for the container must be set up. The easiest way is to run with *host* networking.
 
 ```
-$ docker run -e WEBTUNNEL_DOMAIN=eac8b99b-1866-4ef4-8f57-76b655949c29 -e WEBTUNNEL_DEVICE_ID=6e26e894-10a2-48bf-80f1-65a48527c80e -e WEBTUNNEL_HTTP_PORT=8080 -e WEBTUNNEL_SSH_PORT=22 --network host macchina/device-agent
+$ docker run -e WEBTUNNEL_DOMAIN=eac8b99b-1866-4ef4-8f57-76b655949c29 -e WEBTUNNEL_DEVICE_ID=6e26e894-10a2-48bf-80f1-65a48527c80e -e WEBTUNNEL_HOST=172.17.0.1 -e WEBTUNNEL_HTTP_PORT=8080 -e WEBTUNNEL_SSH_PORT=22 --network host macchina/device-agent
 ```
 
 You must replace the values for `WEBTUNNEL_DOMAIN` and `WEBTUNNEL_DEVICE_ID` with your specific values.
+
+Getting the network configuration right can be a bit tricky, as the *WebTunnelAgent* running in
+the Docker container must be able to connect to network services provided by other containers,
+the host running Docker, or other hosts in the network (depending on your needs).
+
+In any case, the `WEBTUNNEL_HOST` environment variable must be set to something different than
+the default 127.0.0.1, unless the target service is running in the same container as *WebTunnelAgent*.
+Please refer to the Docker documentation on [network containers](https://docs.docker.com/engine/tutorials/networkingcontainers/)
+for more information.
+
 
 ## Configuration
 
