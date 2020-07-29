@@ -37,7 +37,8 @@ The following environment variables are supported:
   - `WEBTUNNEL_DOMAIN`: The domain (UUID) of the device. Must be specified.
   - `WEBTUNNEL_DEVICE_ID`: The device ID to use. Must be specified.
   - `WEBTUNNEL_DEVICE_NAME`: The device name shown in the web user interface. Defaults to `Unnamed Device`.
-  - `WEBTUNNEL_HOST`: The target host the agents forwards incoming tunneled connections to. Defaults to `127.0.0.1`.
+  - `WEBTUNNEL_HOST`: The target host the agents forwards incoming tunneled connections to. Defaults to `172.17.0.1`, which
+    is the IP address of the host from within a container in Docker's default *bridge* network.
   - `WEBTUNNEL_HTTP_PORT`: The port number of the device's web server. Defaults to 80. Set to 0 to disable HTTP access.
   - `WEBTUNNEL_HTTPS_ENABLE`: Set to `true` if device web server requires HTTPS instead of HTTP. Defaults to `false`.
   - `WEBTUNNEL_SSH_PORT`: The port number of the device's SSH server. Defaults to 0 (disabled).
@@ -67,10 +68,12 @@ $ docker build . -t macchina/device-agent
 
 The device agent must be able to connect to the device's web server and/or any other services
 that are to be forwarded. So when running the container, an appropriate network configuration
-for the container must be set up. The easiest way is to run with *host* networking.
+for the container must be set up. In many cases, just using the default `bridge` network
+created by Docker will work. For example, assuming that we want to access a web server
+running on host port 8080, and also the host's SSH port:
 
 ```
-$ docker run -e WEBTUNNEL_DOMAIN=eac8b99b-1866-4ef4-8f57-76b655949c29 -e WEBTUNNEL_DEVICE_ID=6e26e894-10a2-48bf-80f1-65a48527c80e -e WEBTUNNEL_HOST=172.17.0.1 -e WEBTUNNEL_HTTP_PORT=8080 -e WEBTUNNEL_SSH_PORT=22 --network host macchina/device-agent
+$ docker run -e WEBTUNNEL_DOMAIN=eac8b99b-1866-4ef4-8f57-76b655949c29 -e WEBTUNNEL_DEVICE_ID=6e26e894-10a2-48bf-80f1-65a48527c80e -e WEBTUNNEL_HTTP_PORT=8080 -e WEBTUNNEL_SSH_PORT=22 macchina/device-agent
 ```
 
 You must replace the values for `WEBTUNNEL_DOMAIN` and `WEBTUNNEL_DEVICE_ID` with your specific values.
@@ -79,8 +82,13 @@ Getting the network configuration right can be a bit tricky, as the *WebTunnelAg
 the Docker container must be able to connect to network services provided by other containers,
 the host running Docker, or other hosts in the network (depending on your needs).
 
-In any case, the `WEBTUNNEL_HOST` environment variable must be set to something different than
-the default 127.0.0.1, unless the target service is running in the same container as *WebTunnelAgent*.
+The `WEBTUNNEL_HOST` environment variable must be set according to your Docker network configuration.
+It defaults to `172.17.0.1`, which is the IP address of the host from within a container in Docker's
+default *bridge* network. This will also work for accessing network ports that have been
+exposed to the host by other containers. To access a service not exposed to the host by a container,
+set `WEBTUNNEL_HOST` to the container's IP address and make sure the `macchina/device-agent`
+container can reach the other container's network.
+
 Please refer to the Docker documentation on [network containers](https://docs.docker.com/engine/tutorials/networkingcontainers/)
 for more information.
 
