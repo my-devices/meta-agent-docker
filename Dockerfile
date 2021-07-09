@@ -5,15 +5,17 @@
 #
 # Stage 1: Build
 #
-FROM ubuntu:18.04 as buildstage
+FROM alpine:3.12 AS buildstage
 
 # Install required components for building
-RUN apt-get -y update \
- && apt-get -y install \
+RUN apk update \
+ && apk add \
  	git \
     g++ \
-    libssl-dev \
-    cmake
+    linux-headers \
+    cmake \
+    make \
+    openssl-dev
 
 # Build SDK/WebTunnelAgent
 RUN mkdir -p build \
@@ -22,17 +24,19 @@ RUN mkdir -p build \
 	&& cd sdk \
 	&& mkdir cmake-build \
 	&& cd cmake-build \
-	&& cmake .. \
-	&& cmake --build . --config Release
+	&& cmake .. -DENABLE_WEBTUNNELCLIENT=OFF -DENABLE_WEBTUNNELSSH=OFF -DENABLE_WEBTUNNELVNC=OFF -DENABLE_WEBTUNNELRDP=OFF \
+	&& cmake --build . --config Release \
+	&& strip bin/WebTunnelAgent
 
 #
 # Stage 2: Install
 #
-FROM ubuntu:18.04 as runstage
+FROM alpine:3.12 as runstage
 
-RUN apt-get -y update \
- && apt-get -y install \
-    libssl1.1 \
+RUN apk update \
+ && apk add \
+    libstdc++ \
+    openssl \
     ca-certificates
 
 # Copy WebTunnelAgent executable
