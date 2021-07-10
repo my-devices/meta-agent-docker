@@ -115,7 +115,7 @@ jobs:
             --amend macchina/device-agent:latest-arm32v7 \
             --amend macchina/device-agent:latest-arm64v8
           docker manifest create \
-            macchina/device-agent:{$VERSION} \
+            macchina/device-agent:${VERSION} \
             --amend macchina/device-agent:${VERSION}-amd64 \
             --amend macchina/device-agent:${VERSION}-arm32v7 \
             --amend macchina/device-agent:${VERSION}-arm64v8
