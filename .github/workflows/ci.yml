@@ -16,7 +16,7 @@ jobs:
       -
         name: Build Docker Image
         run: |
-          VERSION=`version.sh`
+          VERSION=`./version.sh`
           echo Version: ${VERSION}
           docker build . -t macchina/device-agent:latest-amd64 -t macchina/device-agent:${VERSION}-amd64
       -
@@ -48,7 +48,7 @@ jobs:
       -
         name: Build Docker Image
         run: |
-          VERSION=`version.sh`
+          VERSION=`./version.sh`
           echo Version: ${VERSION}
           docker buildx build \
             --platform linux/arm/v7 \
@@ -82,7 +82,7 @@ jobs:
       -
         name: Build Docker Image
         run: |
-          VERSION=`version.sh`
+          VERSION=`./version.sh`
           echo Version: ${VERSION}
           docker buildx build \
             --platform linux/arm64 \
@@ -104,7 +104,7 @@ jobs:
       -
         name: Create Manifest
         run: |
-          VERSION=`version.sh`
+          VERSION=`./version.sh`
           echo Version: ${VERSION}
           docker manifest create \
             macchina/device-agent:latest \
