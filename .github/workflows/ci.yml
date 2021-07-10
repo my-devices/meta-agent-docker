@@ -105,7 +105,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       -
-        name: Create Manifest
+        name: Create and Publish Manifest
         run: |
           VERSION=`./version.sh`
           echo Version: ${VERSION}
@@ -119,6 +119,5 @@ jobs:
             --amend macchina/device-agent:${VERSION}-amd64 \
             --amend macchina/device-agent:${VERSION}-arm32v7 \
             --amend macchina/device-agent:${VERSION}-arm64v8
-      -
-        name: Publish Manifest
-        run: docker manifest push -a macchina/device-agent
+          docker manifest push macchina/device-agent:latest
+          docker manifest push macchina/device-agent:${VERSION}
