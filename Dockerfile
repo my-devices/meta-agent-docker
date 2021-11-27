@@ -1,5 +1,5 @@
 #
-# This is the Dockerfile for the macchina.io Remote Manager Device Agent (WebTunnelAgent)
+# This is the Dockerfile for the macchina.io REMOTE Device Agent (WebTunnelAgent)
 #
 
 #
