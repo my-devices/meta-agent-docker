@@ -92,6 +92,16 @@ container can reach the other container's network.
 Please refer to the Docker documentation on [network containers](https://docs.docker.com/engine/tutorials/networkingcontainers/)
 for more information.
 
+## Running with Docker Compose
+
+A sample [`docker-compose.yml`](docker-compose.yml) file and a sample environment file
+([`sample.env`](sample.env)) are included in the repository. To launch with `docker-compose`,
+update the environment file and run:
+
+```
+$ docker-compose --env-file=sample.env up -d
+```
+
 
 ## Configuration
 
