@@ -44,6 +44,7 @@ The following environment variables are supported:
   - `WEBTUNNEL_SSH_PORT`: The port number of the device's SSH server. Defaults to 0 (disabled).
   - `WEBTUNNEL_VNC_PORT`: The port number of the device's VNC server. Defaults to 0 (disabled).
   - `WEBTUNNEL_RDP_PORT`: The port number of the device's RDP server. Defaults to 0 (disabled).
+  - `WEBTUNNEL_EXTRA_PORTS`: Additional port numbers (comma-separated) to be allowed. Defaults to empty.
   - `WEBTUNNEL_REFLECTOR_URI`: The address of the macchina.io REMOTE Server (*reflector*).
     Default: https://reflector.my-devices.net
   - `WEBTUNNEL_PASSWORD`: Optional device password. Defaults to none.

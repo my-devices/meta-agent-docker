@@ -4,8 +4,6 @@ services:
     container_name: macchina-device-agent
     image: "macchina/device-agent"
     restart: always
-    ports:
-      - "8080:8080"
     environment:
       WEBTUNNEL_DOMAIN: ${WEBTUNNEL_DOMAIN:?domain is required}
       WEBTUNNEL_DEVICE_ID: ${WEBTUNNEL_DEVICE_ID:?device ID is required}
@@ -16,4 +14,5 @@ services:
       WEBTUNNEL_SSH_PORT: ${WEBTUNNEL_SSH_PORT:-0}
       WEBTUNNEL_VNC_PORT: ${WEBTUNNEL_VNC_PORT:-0}
       WEBTUNNEL_RDP_PORT: ${WEBTUNNEL_RDP_PORT:-0}
+      WEBTUNNEL_EXTRA_PORTS: ${WEBTUNNEL_EXTRA_PORTS:-}
       WEBTUNNEL_REFLECTOR_URI: ${WEBTUNNEL_REFLECTOR_URI:-https://reflector.my-devices.net}
