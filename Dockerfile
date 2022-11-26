@@ -57,7 +57,7 @@ ENV WEBTUNNEL_VNC_PORT=0
 ENV WEBTUNNEL_RDP_PORT=0
 ENV WEBTUNNEL_APP_PORT=0
 ENV WEBTUNNEL_EXTRA_PORTS=
-ENV WEBTUNNEL_REFLECTOR_URI=https://reflector.my-devices.net/
+ENV WEBTUNNEL_REFLECTOR_URI=https://remote.macchina.io
 ENV WEBTUNNEL_PASSWORD=
 
 CMD ["/usr/local/bin/WebTunnelAgent", "--config=/etc/WebTunnelAgent.properties"]

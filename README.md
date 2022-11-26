@@ -46,7 +46,7 @@ The following environment variables are supported:
   - `WEBTUNNEL_RDP_PORT`: The port number of the device's RDP server. Defaults to 0 (disabled).
   - `WEBTUNNEL_EXTRA_PORTS`: Additional port numbers (comma-separated) to be allowed. Defaults to empty.
   - `WEBTUNNEL_REFLECTOR_URI`: The address of the macchina.io REMOTE Server (*reflector*).
-    Default: https://reflector.my-devices.net
+    Default: https://remote.macchina.io
   - `WEBTUNNEL_PASSWORD`: Optional device password. Defaults to none.
   - `LOGPATH`: Path to the log file (defaults to `/var/log/WebTunnelAgent.log`); can be
     overridden to log to a different file (e.g. in a volume). Note: `LOGCHANNEL` must
