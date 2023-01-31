@@ -111,13 +111,13 @@ jobs:
           echo Version: ${VERSION}
           docker manifest create \
             macchina/device-agent:latest \
-            --amend macchina/device-agent:latest-amd64 \
-            --amend macchina/device-agent:latest-arm32v7 \
-            --amend macchina/device-agent:latest-arm64v8
+            macchina/device-agent:latest-amd64 \
+            macchina/device-agent:latest-arm32v7 \
+            macchina/device-agent:latest-arm64v8
           docker manifest create \
             macchina/device-agent:${VERSION} \
-            --amend macchina/device-agent:${VERSION}-amd64 \
-            --amend macchina/device-agent:${VERSION}-arm32v7 \
-            --amend macchina/device-agent:${VERSION}-arm64v8
+            amend macchina/device-agent:${VERSION}-amd64 \
+            amend macchina/device-agent:${VERSION}-arm32v7 \
+            amend macchina/device-agent:${VERSION}-arm64v8
           docker manifest push macchina/device-agent:latest
           docker manifest push macchina/device-agent:${VERSION}
