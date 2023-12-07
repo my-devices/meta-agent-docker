@@ -48,6 +48,11 @@ The following environment variables are supported:
   - `WEBTUNNEL_REFLECTOR_URI`: The address of the macchina.io REMOTE Server (*reflector*).
     Default: https://remote.macchina.io
   - `WEBTUNNEL_PASSWORD`: Optional device password. Defaults to none.
+  - `WEBTUNNEL_CONNECT_TIMEOUT`: The timeout (in seconds) for connecting to the local (forwarded) server socket.
+    Defaults to 10 seconds.
+  - `WEBTUNNEL_LOCAL_TIMEOUT`: The timeout (in seconds) for local (forwarded) socket connections. Defaults to 7200 seconds or 2 hours.
+  - `WEBTUNNEL_REMOTE_TIMEOUT`: The timeout (in seconds) for the WebTunnel connection to the macchina.io REMOTE server (*reflector*).
+    Defaults to 300 seconds or 5 minutes.
   - `LOGPATH`: Path to the log file (defaults to `/var/log/WebTunnelAgent.log`); can be
     overridden to log to a different file (e.g. in a volume). Note: `LOGCHANNEL` must
     be set to `file` for the logfile to be written.
