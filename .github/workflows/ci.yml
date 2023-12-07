@@ -2,7 +2,7 @@ name: meta-agent-docker-ci
 on: [push, workflow_dispatch]
 jobs:
   docker-build-multiarch:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       -
         name: Checkout
