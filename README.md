@@ -95,7 +95,7 @@ exposed to the host by other containers. To access a service not exposed to the 
 set `WEBTUNNEL_HOST` to the container's IP address and make sure the `macchina/device-agent`
 container can reach the other container's network.
 
-Please refer to the Docker documentation on [network containers](https://docs.docker.com/engine/tutorials/networkingcontainers/)
+Please refer to the Docker documentation on [networking](https://docs.docker.com/engine/network/)
 for more information.
 
 ## Running with Docker Compose
