@@ -105,7 +105,7 @@ A sample [`docker-compose.yml`](docker-compose.yml) file and a sample environmen
 update the environment file and run:
 
 ```
-$ docker-compose --env-file=sample.env up -d
+$ docker compose --env-file=sample.env up -d
 ```
 
 
